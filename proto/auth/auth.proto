@@ -4,6 +4,7 @@ package auth;
 option go_package = "github.com/sariya23/proto_api_games/gen/auth;authv2";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 service Auth {
     rpc Register(RegisterRequest) returns (RegisterResponse) {
@@ -23,6 +24,15 @@ service Auth {
             get: "/v1/auth/is_admin"
         };
     }
+    rpc Ping(google.protobuf.Empty) returns (PingResponse) {
+        option (google.api.http) = {
+            get: "/v1/auth/ping"
+        };
+    }
+}
+
+message PingResponse {
+    string response = 1;
 }
 
 message RegisterRequest {
