@@ -1,4 +1,4 @@
-module github.com/sariya23/proto_api_games/v2
+module github.com/sariya23/proto_api_games/v3
 
 go 1.23.0
 
