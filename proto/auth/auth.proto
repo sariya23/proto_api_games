@@ -6,9 +6,24 @@ option go_package = "github.com/sariya23/proto_api_games/gen/auth;authv2";
 import "google/api/annotations.proto";
 
 service Auth {
-    rpc Register(RegisterRequest) returns (RegisterResponse) {}
-    rpc Login(LoginRequest) returns (LoginResponse) {}
-    rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse) {}
+    rpc Register(RegisterRequest) returns (RegisterResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/register"
+            body: "*"
+        };
+    }
+    rpc Login(LoginRequest) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/login"
+            body: "*"
+        };
+    };
+    rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/is_admin"
+            body: "*"
+        };
+    }
 }
 
 message RegisterRequest {
