@@ -6,6 +6,7 @@ gen_auth:
 	--go-grpc_opt paths=source_relative \
 	--go-grpc_out ./gen \
 	--grpc-gateway_out ./gen \
+	--swagger_out=:swagger \
 	--grpc-gateway_opt paths=source_relative
 .PHONY: gen_auth
 
