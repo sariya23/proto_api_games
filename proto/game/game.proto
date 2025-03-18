@@ -4,11 +4,25 @@ package auth;
 option go_package = "github.com/sariya23/proto_api_games/gen/game;gamev1";
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
 service GameService {
-    rpc AddGame(AddGameRequest) returns (AddGameResponse) {};
-    rpc GetGame(GetGameRequest) returns (GetGameResponse) {};
-    rpc GetTopGames(GetTopGamesRequest) returns (GetTopGamesResponse) {};
+    rpc AddGame(AddGameRequest) returns (AddGameResponse) {
+        option (google.api.http) = {
+            post: "/v1/game/add"
+            body: "*"
+        };
+    };
+    rpc GetGame(GetGameRequest) returns (GetGameResponse) {
+        option (google.api.http) = {
+            get: "/v1/game/get/{title}"
+        };
+    };
+    rpc GetTopGames(GetTopGamesRequest) returns (GetTopGamesResponse) {
+        option (google.api.http) = {
+            get: "/v1/game/top"
+        };
+    };
 }
 
 message Game {
