@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "github.com/sariya23/proto_api_games/gen/game;gamev1";
+
+import "google/protobuf/timestamp.proto";
+
+service GameService {
+    rpc AddGame(AddGameRequest) returns (AddGameResponse) {};
+    rpc GetGame(GetGameRequest) returns (GetGameResponse) {};
+    rpc GetTopGames(GetTopGamesRequest) returns (GetTopGamesResponse) {};
+}
+
+message Game {
+    string title = 1;
+    string genre = 2;
+    string description = 3;
+    google.protobuf.Timestamp release_year = 4;
+    bytes cover_image = 5;
+    repeated string tags = 6;
+}
+
+message AddGameRequest {
+    Game game = 1;
+}
+
+message AddGameResponse {
+    Game game = 1; 
+}
+
+message GetGameRequest {
+    string title = 1;
+}
+
+message GetGameResponse {
+    Game game = 1;
+}
+
+message GetTopGamesRequest {
+    oneof game_details {
+    string year = 1;
+    string genre = 2;
+    int32 limit = 3;
+    }
+    repeated string tags = 4;
+}
+
+message GetTopGamesResponse {
+    repeated Game games = 1;
+}
