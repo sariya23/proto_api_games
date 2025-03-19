@@ -39,7 +39,7 @@ message AddGameRequest {
 }
 
 message AddGameResponse {
-    int64 game_id = 1; 
+    uint64 game_id = 1; 
 }
 
 message GetGameRequest {
