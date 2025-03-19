@@ -27,7 +27,7 @@ service GameService {
 
 message Game {
     string title = 1;
-    string genre = 2;
+    repeated string genres = 2;
     string description = 3;
     google.protobuf.Timestamp release_year = 4;
     bytes cover_image = 5;
@@ -53,9 +53,9 @@ message GetGameResponse {
 message GetTopGamesRequest {
     oneof game_details {
     string year = 1;
-    string genre = 2;
-    int32 limit = 3;
+    int32 limit = 2;
     }
+    repeated string genres = 3;
     repeated string tags = 4;
 }
 
