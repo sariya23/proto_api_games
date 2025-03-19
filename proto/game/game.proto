@@ -3,8 +3,9 @@ syntax = "proto3";
 package auth;
 option go_package = "github.com/sariya23/proto_api_games/gen/game;gamev1";
 
-import "google/protobuf/timestamp.proto";
+
 import "google/api/annotations.proto";
+import "google/api/date.proto";
 
 service GameService {
     rpc AddGame(AddGameRequest) returns (AddGameResponse) {
@@ -29,7 +30,7 @@ message Game {
     string title = 1;
     repeated string genres = 2;
     string description = 3;
-    google.protobuf.Timestamp release_year = 4;
+    google.type.Date release_year = 4;
     bytes cover_image = 5;
     repeated string tags = 6;
 }
