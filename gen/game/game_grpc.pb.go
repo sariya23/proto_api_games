@@ -22,6 +22,7 @@ const (
 	GameService_AddGame_FullMethodName     = "/auth.GameService/AddGame"
 	GameService_GetGame_FullMethodName     = "/auth.GameService/GetGame"
 	GameService_GetTopGames_FullMethodName = "/auth.GameService/GetTopGames"
+	GameService_DeleteGame_FullMethodName  = "/auth.GameService/DeleteGame"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -31,6 +32,7 @@ type GameServiceClient interface {
 	AddGame(ctx context.Context, in *AddGameRequest, opts ...grpc.CallOption) (*AddGameResponse, error)
 	GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error)
 	GetTopGames(ctx context.Context, in *GetTopGamesRequest, opts ...grpc.CallOption) (*GetTopGamesResponse, error)
+	DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error)
 }
 
 type gameServiceClient struct {
@@ -71,6 +73,16 @@ func (c *gameServiceClient) GetTopGames(ctx context.Context, in *GetTopGamesRequ
 	return out, nil
 }
 
+func (c *gameServiceClient) DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteGameResponse)
+	err := c.cc.Invoke(ctx, GameService_DeleteGame_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameServiceServer is the server API for GameService service.
 // All implementations must embed UnimplementedGameServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type GameServiceServer interface {
 	AddGame(context.Context, *AddGameRequest) (*AddGameResponse, error)
 	GetGame(context.Context, *GetGameRequest) (*GetGameResponse, error)
 	GetTopGames(context.Context, *GetTopGamesRequest) (*GetTopGamesResponse, error)
+	DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error)
 	mustEmbedUnimplementedGameServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedGameServiceServer) GetGame(context.Context, *GetGameRequest) 
 }
 func (UnimplementedGameServiceServer) GetTopGames(context.Context, *GetTopGamesRequest) (*GetTopGamesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTopGames not implemented")
+}
+func (UnimplementedGameServiceServer) DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteGame not implemented")
 }
 func (UnimplementedGameServiceServer) mustEmbedUnimplementedGameServiceServer() {}
 func (UnimplementedGameServiceServer) testEmbeddedByValue()                     {}
@@ -172,6 +188,24 @@ func _GameService_GetTopGames_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_DeleteGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteGameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).DeleteGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_DeleteGame_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).DeleteGame(ctx, req.(*DeleteGameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameService_ServiceDesc is the grpc.ServiceDesc for GameService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTopGames",
 			Handler:    _GameService_GetTopGames_Handler,
+		},
+		{
+			MethodName: "DeleteGame",
+			Handler:    _GameService_DeleteGame_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

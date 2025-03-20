@@ -16,7 +16,7 @@ service GameService {
     };
     rpc GetGame(GetGameRequest) returns (GetGameResponse) {
         option (google.api.http) = {
-            get: "/v1/game/get/{title}"
+            get: "/v1/game/get/{game_id}"
         };
     };
     rpc GetTopGames(GetTopGamesRequest) returns (GetTopGamesResponse) {
@@ -26,8 +26,7 @@ service GameService {
     };
     rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
         option (google.api.http) = {
-            delete: "/v1/game/delete"
-            body: "*"
+            delete: "/v1/game/delete/{game_id}"
         };
     }
 }
@@ -50,7 +49,7 @@ message AddGameResponse {
 }
 
 message GetGameRequest {
-    string title = 1;
+    uint64 game_id = 1;
 }
 
 message GetGameResponse {
