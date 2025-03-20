@@ -24,6 +24,12 @@ service GameService {
             get: "/v1/game/top"
         };
     };
+    rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
+        option (google.api.http) = {
+            delete: "/v1/game/delete"
+            body: "*"
+        };
+    }
 }
 
 message Game {
@@ -62,4 +68,14 @@ message GetTopGamesRequest {
 
 message GetTopGamesResponse {
     repeated Game games = 1;
+}
+
+message DeleteGameRequest {
+    uint64 game_id = 1;
+}
+
+message DeleteGameResponse {
+    uint64 game_id = 1;
+    string title = 2;
+    google.type.Date release_year = 3;
 }
