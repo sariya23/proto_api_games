@@ -40,6 +40,11 @@ message Game {
     repeated string tags = 6;
 }
 
+message GameWithRating {
+    Game game = 1;
+    float rating = 2;
+}
+
 message AddGameRequest {
     Game game = 1;
 }
@@ -53,7 +58,7 @@ message GetGameRequest {
 }
 
 message GetGameResponse {
-    Game game = 1;
+    GameWithRating game = 1;
 }
 
 message GetTopGamesRequest {
@@ -66,7 +71,7 @@ message GetTopGamesRequest {
 }
 
 message GetTopGamesResponse {
-    repeated Game games = 1;
+    repeated GameWithRating games = 1;
 }
 
 message DeleteGameRequest {
