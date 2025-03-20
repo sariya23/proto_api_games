@@ -74,7 +74,5 @@ message DeleteGameRequest {
 }
 
 message DeleteGameResponse {
-    uint64 game_id = 1;
-    string title = 2;
-    google.type.Date release_year = 3;
+    Game game = 1;
 }
