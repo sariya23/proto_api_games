@@ -62,10 +62,8 @@ message GetGameResponse {
 }
 
 message GetTopGamesRequest {
-    oneof game_details {
     string year = 1;
     uint32 limit = 2;
-    }
     repeated string genres = 3;
     repeated string tags = 4;
 }
