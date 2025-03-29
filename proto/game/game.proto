@@ -57,7 +57,6 @@ message AddGameRequest {
 
 message AddGameResponse {
     DomainGame game = 1; 
-    string message = 2;
 }
 
 message GetGameRequest {
@@ -77,7 +76,6 @@ message GetTopGamesRequest {
 
 message GetTopGamesResponse {
     repeated DomainGame games = 1;
-    string message = 2;
 }
 
 message DeleteGameRequest {
@@ -86,5 +84,4 @@ message DeleteGameRequest {
 
 message DeleteGameResponse {
     DomainGame game = 1;
-    string message = 2;
 }
