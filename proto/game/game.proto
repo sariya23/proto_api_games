@@ -31,7 +31,7 @@ service GameService {
     }
 }
 
-message Game {
+message GameRequest {
     string title = 1;
     repeated string genres = 2;
     string description = 3;
@@ -40,17 +40,22 @@ message Game {
     repeated string tags = 6;
 }
 
-message GameWithRating {
-    Game game = 1;
-    float rating = 2;
+message DomainGame {
+    string title = 1;
+    repeated string genres = 2;
+    string description = 3;
+    google.type.Date release_year = 4;
+    string cover_image_url = 5;
+    repeated string tags = 6;
+    float rating = 7;
 }
 
 message AddGameRequest {
-    Game game = 1;
+    GameRequest game = 1;
 }
 
 message AddGameResponse {
-    Game game = 1; 
+    DomainGame game = 1; 
     string message = 2;
 }
 
@@ -59,7 +64,7 @@ message GetGameRequest {
 }
 
 message GetGameResponse {
-    GameWithRating game = 1;
+    DomainGame game = 1;
 }
 
 message GetTopGamesRequest {
@@ -70,7 +75,8 @@ message GetTopGamesRequest {
 }
 
 message GetTopGamesResponse {
-    repeated GameWithRating games = 1;
+    repeated DomainGame games = 1;
+    string message = 2;
 }
 
 message DeleteGameRequest {
@@ -78,5 +84,6 @@ message DeleteGameRequest {
 }
 
 message DeleteGameResponse {
-    Game game = 1;
+    DomainGame game = 1;
+    string message = 2;
 }
