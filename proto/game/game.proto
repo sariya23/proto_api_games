@@ -48,6 +48,7 @@ message DomainGame {
     string cover_image_url = 5;
     repeated string tags = 6;
     float rating = 7;
+    uint64 ID = 8; 
 }
 
 message AddGameRequest {
