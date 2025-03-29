@@ -50,7 +50,7 @@ message AddGameRequest {
 }
 
 message AddGameResponse {
-    uint64 game_id = 1; 
+    Game game = 1; 
     string message = 2;
 }
 
