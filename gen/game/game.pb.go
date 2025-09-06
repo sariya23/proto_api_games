@@ -115,7 +115,7 @@ type DomainGame struct {
 	ReleaseDate   *date.Date             `protobuf:"bytes,4,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
 	CoverImageUrl string                 `protobuf:"bytes,5,opt,name=cover_image_url,json=coverImageUrl,proto3" json:"cover_image_url,omitempty"`
 	Tags          []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
-	ID            uint64                 `protobuf:"varint,8,opt,name=ID,proto3" json:"ID,omitempty"`
+	ID            uint64                 `protobuf:"varint,7,opt,name=ID,proto3" json:"ID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -596,7 +596,7 @@ const file_game_game_proto_rawDesc = "" +
 	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12&\n" +
 	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\x12\x12\n" +
 	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x0e\n" +
-	"\x02ID\x18\b \x01(\x04R\x02ID\"7\n" +
+	"\x02ID\x18\a \x01(\x04R\x02ID\"7\n" +
 	"\x0eAddGameRequest\x12%\n" +
 	"\x04game\x18\x01 \x01(\v2\x11.auth.GameRequestR\x04game\"7\n" +
 	"\x0fAddGameResponse\x12$\n" +

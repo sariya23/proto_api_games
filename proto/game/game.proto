@@ -47,7 +47,7 @@ message DomainGame {
     google.type.Date release_date = 4;
     string cover_image_url = 5;
     repeated string tags = 6;
-    uint64 ID = 8; 
+    uint64 ID = 7; 
 }
 
 message AddGameRequest {
