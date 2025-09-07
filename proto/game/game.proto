@@ -54,9 +54,7 @@ message AddGameRequest {
     GameRequest game = 1;
 }
 
-message AddGameResponse {
-    DomainGame game = 1; 
-}
+message AddGameResponse {}
 
 message GetGameRequest {
     uint64 game_id = 1;
