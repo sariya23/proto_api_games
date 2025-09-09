@@ -54,7 +54,9 @@ message AddGameRequest {
     GameRequest game = 1;
 }
 
-message AddGameResponse {}
+message AddGameResponse {
+    uint64 game_id = 1;
+}
 
 message GetGameRequest {
     uint64 game_id = 1;

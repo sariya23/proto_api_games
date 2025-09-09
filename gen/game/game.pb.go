@@ -245,6 +245,7 @@ func (x *AddGameRequest) GetGame() *GameRequest {
 
 type AddGameResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	GameId        uint64                 `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -277,6 +278,13 @@ func (x *AddGameResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddGameResponse.ProtoReflect.Descriptor instead.
 func (*AddGameResponse) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AddGameResponse) GetGameId() uint64 {
+	if x != nil {
+		return x.GameId
+	}
+	return 0
 }
 
 type GetGameRequest struct {
@@ -590,8 +598,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x0e\n" +
 	"\x02ID\x18\a \x01(\x04R\x02ID\"7\n" +
 	"\x0eAddGameRequest\x12%\n" +
-	"\x04game\x18\x01 \x01(\v2\x11.auth.GameRequestR\x04game\"\x11\n" +
-	"\x0fAddGameResponse\")\n" +
+	"\x04game\x18\x01 \x01(\v2\x11.auth.GameRequestR\x04game\"*\n" +
+	"\x0fAddGameResponse\x12\x17\n" +
+	"\agame_id\x18\x01 \x01(\x04R\x06gameId\")\n" +
 	"\x0eGetGameRequest\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x04R\x06gameId\"7\n" +
 	"\x0fGetGameResponse\x12$\n" +
