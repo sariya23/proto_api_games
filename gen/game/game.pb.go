@@ -333,7 +333,7 @@ func (x *GetGameRequest) GetGameId() uint64 {
 
 type GetGameResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameID        int64                  `protobuf:"varint,1,opt,name=gameID,proto3" json:"gameID,omitempty"`
+	Game          *DomainGame            `protobuf:"bytes,1,opt,name=game,proto3" json:"game,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -368,11 +368,11 @@ func (*GetGameResponse) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetGameResponse) GetGameID() int64 {
+func (x *GetGameResponse) GetGame() *DomainGame {
 	if x != nil {
-		return x.GameID
+		return x.Game
 	}
-	return 0
+	return nil
 }
 
 type GetTopGamesRequest struct {
@@ -533,7 +533,7 @@ func (x *DeleteGameRequest) GetGameId() uint64 {
 
 type DeleteGameResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Game          *DomainGame            `protobuf:"bytes,1,opt,name=game,proto3" json:"game,omitempty"`
+	GameId        uint64                 `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -568,11 +568,11 @@ func (*DeleteGameResponse) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *DeleteGameResponse) GetGame() *DomainGame {
+func (x *DeleteGameResponse) GetGameId() uint64 {
 	if x != nil {
-		return x.Game
+		return x.GameId
 	}
-	return nil
+	return 0
 }
 
 var File_game_game_proto protoreflect.FileDescriptor
@@ -602,9 +602,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\x0fAddGameResponse\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x04R\x06gameId\")\n" +
 	"\x0eGetGameRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x04R\x06gameId\")\n" +
-	"\x0fGetGameResponse\x12\x16\n" +
-	"\x06gameID\x18\x01 \x01(\x03R\x06gameID\"j\n" +
+	"\agame_id\x18\x01 \x01(\x04R\x06gameId\"7\n" +
+	"\x0fGetGameResponse\x12$\n" +
+	"\x04game\x18\x01 \x01(\v2\x10.auth.DomainGameR\x04game\"j\n" +
 	"\x12GetTopGamesRequest\x12\x12\n" +
 	"\x04year\x18\x01 \x01(\x05R\x04year\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
@@ -613,9 +613,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\x13GetTopGamesResponse\x12&\n" +
 	"\x05games\x18\x01 \x03(\v2\x10.auth.DomainGameR\x05games\",\n" +
 	"\x11DeleteGameRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x04R\x06gameId\":\n" +
-	"\x12DeleteGameResponse\x12$\n" +
-	"\x04game\x18\x01 \x01(\v2\x10.auth.DomainGameR\x04game2\xf4\x02\n" +
+	"\agame_id\x18\x01 \x01(\x04R\x06gameId\"-\n" +
+	"\x12DeleteGameResponse\x12\x17\n" +
+	"\agame_id\x18\x01 \x01(\x04R\x06gameId2\xf4\x02\n" +
 	"\vGameService\x12O\n" +
 	"\aAddGame\x12\x14.auth.AddGameRequest\x1a\x15.auth.AddGameResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/game/add\x12V\n" +
 	"\aGetGame\x12\x14.auth.GetGameRequest\x1a\x15.auth.GetGameResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/game/get/{game_id}\x12X\n" +
@@ -653,8 +653,8 @@ var file_game_game_proto_depIdxs = []int32{
 	10, // 0: auth.GameRequest.release_date:type_name -> google.type.Date
 	10, // 1: auth.DomainGame.release_date:type_name -> google.type.Date
 	0,  // 2: auth.AddGameRequest.game:type_name -> auth.GameRequest
-	1,  // 3: auth.GetTopGamesResponse.games:type_name -> auth.DomainGame
-	1,  // 4: auth.DeleteGameResponse.game:type_name -> auth.DomainGame
+	1,  // 3: auth.GetGameResponse.game:type_name -> auth.DomainGame
+	1,  // 4: auth.GetTopGamesResponse.games:type_name -> auth.DomainGame
 	2,  // 5: auth.GameService.AddGame:input_type -> auth.AddGameRequest
 	4,  // 6: auth.GameService.GetGame:input_type -> auth.GetGameRequest
 	6,  // 7: auth.GameService.GetTopGames:input_type -> auth.GetTopGamesRequest
