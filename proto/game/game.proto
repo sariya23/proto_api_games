@@ -63,7 +63,7 @@ message GetGameRequest {
 }
 
 message GetGameResponse {
-    int64 gameID = 1;
+    DomainGame game = 1;
 }
 
 message GetTopGamesRequest {
@@ -82,5 +82,5 @@ message DeleteGameRequest {
 }
 
 message DeleteGameResponse {
-    DomainGame game = 1;
+    uint64 game_id = 1;
 }
