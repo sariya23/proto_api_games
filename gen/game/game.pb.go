@@ -333,7 +333,7 @@ func (x *GetGameRequest) GetGameId() uint64 {
 
 type GetGameResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Game          *DomainGame            `protobuf:"bytes,1,opt,name=game,proto3" json:"game,omitempty"`
+	GameID        int64                  `protobuf:"varint,1,opt,name=gameID,proto3" json:"gameID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -368,11 +368,11 @@ func (*GetGameResponse) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetGameResponse) GetGame() *DomainGame {
+func (x *GetGameResponse) GetGameID() int64 {
 	if x != nil {
-		return x.Game
+		return x.GameID
 	}
-	return nil
+	return 0
 }
 
 type GetTopGamesRequest struct {
@@ -602,9 +602,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\x0fAddGameResponse\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x04R\x06gameId\")\n" +
 	"\x0eGetGameRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x04R\x06gameId\"7\n" +
-	"\x0fGetGameResponse\x12$\n" +
-	"\x04game\x18\x01 \x01(\v2\x10.auth.DomainGameR\x04game\"j\n" +
+	"\agame_id\x18\x01 \x01(\x04R\x06gameId\")\n" +
+	"\x0fGetGameResponse\x12\x16\n" +
+	"\x06gameID\x18\x01 \x01(\x03R\x06gameID\"j\n" +
 	"\x12GetTopGamesRequest\x12\x12\n" +
 	"\x04year\x18\x01 \x01(\x05R\x04year\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
@@ -653,22 +653,21 @@ var file_game_game_proto_depIdxs = []int32{
 	10, // 0: auth.GameRequest.release_date:type_name -> google.type.Date
 	10, // 1: auth.DomainGame.release_date:type_name -> google.type.Date
 	0,  // 2: auth.AddGameRequest.game:type_name -> auth.GameRequest
-	1,  // 3: auth.GetGameResponse.game:type_name -> auth.DomainGame
-	1,  // 4: auth.GetTopGamesResponse.games:type_name -> auth.DomainGame
-	1,  // 5: auth.DeleteGameResponse.game:type_name -> auth.DomainGame
-	2,  // 6: auth.GameService.AddGame:input_type -> auth.AddGameRequest
-	4,  // 7: auth.GameService.GetGame:input_type -> auth.GetGameRequest
-	6,  // 8: auth.GameService.GetTopGames:input_type -> auth.GetTopGamesRequest
-	8,  // 9: auth.GameService.DeleteGame:input_type -> auth.DeleteGameRequest
-	3,  // 10: auth.GameService.AddGame:output_type -> auth.AddGameResponse
-	5,  // 11: auth.GameService.GetGame:output_type -> auth.GetGameResponse
-	7,  // 12: auth.GameService.GetTopGames:output_type -> auth.GetTopGamesResponse
-	9,  // 13: auth.GameService.DeleteGame:output_type -> auth.DeleteGameResponse
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	1,  // 3: auth.GetTopGamesResponse.games:type_name -> auth.DomainGame
+	1,  // 4: auth.DeleteGameResponse.game:type_name -> auth.DomainGame
+	2,  // 5: auth.GameService.AddGame:input_type -> auth.AddGameRequest
+	4,  // 6: auth.GameService.GetGame:input_type -> auth.GetGameRequest
+	6,  // 7: auth.GameService.GetTopGames:input_type -> auth.GetTopGamesRequest
+	8,  // 8: auth.GameService.DeleteGame:input_type -> auth.DeleteGameRequest
+	3,  // 9: auth.GameService.AddGame:output_type -> auth.AddGameResponse
+	5,  // 10: auth.GameService.GetGame:output_type -> auth.GetGameResponse
+	7,  // 11: auth.GameService.GetTopGames:output_type -> auth.GetTopGamesResponse
+	9,  // 12: auth.GameService.DeleteGame:output_type -> auth.DeleteGameResponse
+	9,  // [9:13] is the sub-list for method output_type
+	5,  // [5:9] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_game_game_proto_init() }

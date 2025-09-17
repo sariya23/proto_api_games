@@ -63,7 +63,7 @@ message GetGameRequest {
 }
 
 message GetGameResponse {
-    DomainGame game = 1;
+    int64 gameID = 1;
 }
 
 message GetTopGamesRequest {
