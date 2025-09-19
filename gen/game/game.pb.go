@@ -444,8 +444,8 @@ func (x *GetTopGamesRequest) GetTags() []string {
 }
 
 type GetTopGamesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Games         []*DomainGame          `protobuf:"bytes,1,rep,name=games,proto3" json:"games,omitempty"`
+	state         protoimpl.MessageState           `protogen:"open.v1"`
+	Games         []*GetTopGamesResponse_ShortGame `protobuf:"bytes,1,rep,name=games,proto3" json:"games,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -480,7 +480,7 @@ func (*GetTopGamesResponse) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetTopGamesResponse) GetGames() []*DomainGame {
+func (x *GetTopGamesResponse) GetGames() []*GetTopGamesResponse_ShortGame {
 	if x != nil {
 		return x.Games
 	}
@@ -575,6 +575,82 @@ func (x *DeleteGameResponse) GetGameId() uint64 {
 	return 0
 }
 
+type GetTopGamesResponse_ShortGame struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ID            uint64                 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	ReleaseDate   *date.Date             `protobuf:"bytes,4,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
+	CoverImageUrl string                 `protobuf:"bytes,5,opt,name=cover_image_url,json=coverImageUrl,proto3" json:"cover_image_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTopGamesResponse_ShortGame) Reset() {
+	*x = GetTopGamesResponse_ShortGame{}
+	mi := &file_game_game_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTopGamesResponse_ShortGame) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTopGamesResponse_ShortGame) ProtoMessage() {}
+
+func (x *GetTopGamesResponse_ShortGame) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTopGamesResponse_ShortGame.ProtoReflect.Descriptor instead.
+func (*GetTopGamesResponse_ShortGame) Descriptor() ([]byte, []int) {
+	return file_game_game_proto_rawDescGZIP(), []int{7, 0}
+}
+
+func (x *GetTopGamesResponse_ShortGame) GetID() uint64 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *GetTopGamesResponse_ShortGame) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GetTopGamesResponse_ShortGame) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *GetTopGamesResponse_ShortGame) GetReleaseDate() *date.Date {
+	if x != nil {
+		return x.ReleaseDate
+	}
+	return nil
+}
+
+func (x *GetTopGamesResponse_ShortGame) GetCoverImageUrl() string {
+	if x != nil {
+		return x.CoverImageUrl
+	}
+	return ""
+}
+
 var File_game_game_proto protoreflect.FileDescriptor
 
 const file_game_game_proto_rawDesc = "" +
@@ -609,9 +685,15 @@ const file_game_game_proto_rawDesc = "" +
 	"\x04year\x18\x01 \x01(\x05R\x04year\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
 	"\x06genres\x18\x03 \x03(\tR\x06genres\x12\x12\n" +
-	"\x04tags\x18\x04 \x03(\tR\x04tags\"=\n" +
-	"\x13GetTopGamesResponse\x12&\n" +
-	"\x05games\x18\x01 \x03(\v2\x10.auth.DomainGameR\x05games\",\n" +
+	"\x04tags\x18\x04 \x03(\tR\x04tags\"\x84\x02\n" +
+	"\x13GetTopGamesResponse\x129\n" +
+	"\x05games\x18\x01 \x03(\v2#.auth.GetTopGamesResponse.ShortGameR\x05games\x1a\xb1\x01\n" +
+	"\tShortGame\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x04R\x02ID\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x124\n" +
+	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12&\n" +
+	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\",\n" +
 	"\x11DeleteGameRequest\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x04R\x06gameId\"-\n" +
 	"\x12DeleteGameResponse\x12\x17\n" +
@@ -635,39 +717,41 @@ func file_game_game_proto_rawDescGZIP() []byte {
 	return file_game_game_proto_rawDescData
 }
 
-var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_game_game_proto_goTypes = []any{
-	(*GameRequest)(nil),         // 0: auth.GameRequest
-	(*DomainGame)(nil),          // 1: auth.DomainGame
-	(*AddGameRequest)(nil),      // 2: auth.AddGameRequest
-	(*AddGameResponse)(nil),     // 3: auth.AddGameResponse
-	(*GetGameRequest)(nil),      // 4: auth.GetGameRequest
-	(*GetGameResponse)(nil),     // 5: auth.GetGameResponse
-	(*GetTopGamesRequest)(nil),  // 6: auth.GetTopGamesRequest
-	(*GetTopGamesResponse)(nil), // 7: auth.GetTopGamesResponse
-	(*DeleteGameRequest)(nil),   // 8: auth.DeleteGameRequest
-	(*DeleteGameResponse)(nil),  // 9: auth.DeleteGameResponse
-	(*date.Date)(nil),           // 10: google.type.Date
+	(*GameRequest)(nil),                   // 0: auth.GameRequest
+	(*DomainGame)(nil),                    // 1: auth.DomainGame
+	(*AddGameRequest)(nil),                // 2: auth.AddGameRequest
+	(*AddGameResponse)(nil),               // 3: auth.AddGameResponse
+	(*GetGameRequest)(nil),                // 4: auth.GetGameRequest
+	(*GetGameResponse)(nil),               // 5: auth.GetGameResponse
+	(*GetTopGamesRequest)(nil),            // 6: auth.GetTopGamesRequest
+	(*GetTopGamesResponse)(nil),           // 7: auth.GetTopGamesResponse
+	(*DeleteGameRequest)(nil),             // 8: auth.DeleteGameRequest
+	(*DeleteGameResponse)(nil),            // 9: auth.DeleteGameResponse
+	(*GetTopGamesResponse_ShortGame)(nil), // 10: auth.GetTopGamesResponse.ShortGame
+	(*date.Date)(nil),                     // 11: google.type.Date
 }
 var file_game_game_proto_depIdxs = []int32{
-	10, // 0: auth.GameRequest.release_date:type_name -> google.type.Date
-	10, // 1: auth.DomainGame.release_date:type_name -> google.type.Date
+	11, // 0: auth.GameRequest.release_date:type_name -> google.type.Date
+	11, // 1: auth.DomainGame.release_date:type_name -> google.type.Date
 	0,  // 2: auth.AddGameRequest.game:type_name -> auth.GameRequest
 	1,  // 3: auth.GetGameResponse.game:type_name -> auth.DomainGame
-	1,  // 4: auth.GetTopGamesResponse.games:type_name -> auth.DomainGame
-	2,  // 5: auth.GameService.AddGame:input_type -> auth.AddGameRequest
-	4,  // 6: auth.GameService.GetGame:input_type -> auth.GetGameRequest
-	6,  // 7: auth.GameService.GetTopGames:input_type -> auth.GetTopGamesRequest
-	8,  // 8: auth.GameService.DeleteGame:input_type -> auth.DeleteGameRequest
-	3,  // 9: auth.GameService.AddGame:output_type -> auth.AddGameResponse
-	5,  // 10: auth.GameService.GetGame:output_type -> auth.GetGameResponse
-	7,  // 11: auth.GameService.GetTopGames:output_type -> auth.GetTopGamesResponse
-	9,  // 12: auth.GameService.DeleteGame:output_type -> auth.DeleteGameResponse
-	9,  // [9:13] is the sub-list for method output_type
-	5,  // [5:9] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	10, // 4: auth.GetTopGamesResponse.games:type_name -> auth.GetTopGamesResponse.ShortGame
+	11, // 5: auth.GetTopGamesResponse.ShortGame.release_date:type_name -> google.type.Date
+	2,  // 6: auth.GameService.AddGame:input_type -> auth.AddGameRequest
+	4,  // 7: auth.GameService.GetGame:input_type -> auth.GetGameRequest
+	6,  // 8: auth.GameService.GetTopGames:input_type -> auth.GetTopGamesRequest
+	8,  // 9: auth.GameService.DeleteGame:input_type -> auth.DeleteGameRequest
+	3,  // 10: auth.GameService.AddGame:output_type -> auth.AddGameResponse
+	5,  // 11: auth.GameService.GetGame:output_type -> auth.GetGameResponse
+	7,  // 12: auth.GameService.GetTopGames:output_type -> auth.GetTopGamesResponse
+	9,  // 13: auth.GameService.DeleteGame:output_type -> auth.DeleteGameResponse
+	10, // [10:14] is the sub-list for method output_type
+	6,  // [6:10] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_game_game_proto_init() }
@@ -681,7 +765,7 @@ func file_game_game_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_game_game_proto_rawDesc), len(file_game_game_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

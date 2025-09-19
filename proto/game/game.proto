@@ -74,7 +74,16 @@ message GetTopGamesRequest {
 }
 
 message GetTopGamesResponse {
-    repeated DomainGame games = 1;
+    repeated ShortGame games = 1;
+
+    message ShortGame {
+        uint64 ID = 1;
+        string title = 2;
+        string description = 3;
+        google.type.Date release_date = 4;
+        string cover_image_url = 5;
+
+    }
 }
 
 message DeleteGameRequest {
