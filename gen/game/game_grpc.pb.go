@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GameService_AddGame_FullMethodName     = "/auth.GameService/AddGame"
-	GameService_GetGame_FullMethodName     = "/auth.GameService/GetGame"
-	GameService_GetTopGames_FullMethodName = "/auth.GameService/GetTopGames"
-	GameService_DeleteGame_FullMethodName  = "/auth.GameService/DeleteGame"
+	GameService_AddGame_FullMethodName     = "/game.GameService/AddGame"
+	GameService_GetGame_FullMethodName     = "/game.GameService/GetGame"
+	GameService_GetTopGames_FullMethodName = "/game.GameService/GetTopGames"
+	GameService_DeleteGame_FullMethodName  = "/game.GameService/DeleteGame"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -210,7 +210,7 @@ func _GameService_DeleteGame_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GameService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.GameService",
+	ServiceName: "game.GameService",
 	HandlerType: (*GameServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -187,7 +187,7 @@ func RegisterGameServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/auth.GameService/AddGame", runtime.WithHTTPPathPattern("/v1/game/add"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameService/AddGame", runtime.WithHTTPPathPattern("/v1/game/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -207,7 +207,7 @@ func RegisterGameServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/auth.GameService/GetGame", runtime.WithHTTPPathPattern("/v1/game/get/{game_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameService/GetGame", runtime.WithHTTPPathPattern("/v1/game/get/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -227,7 +227,7 @@ func RegisterGameServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/auth.GameService/GetTopGames", runtime.WithHTTPPathPattern("/v1/game/top"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameService/GetTopGames", runtime.WithHTTPPathPattern("/v1/game/top"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -247,7 +247,7 @@ func RegisterGameServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/auth.GameService/DeleteGame", runtime.WithHTTPPathPattern("/v1/game/delete/{game_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameService/DeleteGame", runtime.WithHTTPPathPattern("/v1/game/delete/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -305,7 +305,7 @@ func RegisterGameServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/auth.GameService/AddGame", runtime.WithHTTPPathPattern("/v1/game/add"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameService/AddGame", runtime.WithHTTPPathPattern("/v1/game/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -322,7 +322,7 @@ func RegisterGameServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/auth.GameService/GetGame", runtime.WithHTTPPathPattern("/v1/game/get/{game_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameService/GetGame", runtime.WithHTTPPathPattern("/v1/game/get/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -339,7 +339,7 @@ func RegisterGameServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/auth.GameService/GetTopGames", runtime.WithHTTPPathPattern("/v1/game/top"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameService/GetTopGames", runtime.WithHTTPPathPattern("/v1/game/top"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -356,7 +356,7 @@ func RegisterGameServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/auth.GameService/DeleteGame", runtime.WithHTTPPathPattern("/v1/game/delete/{game_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameService/DeleteGame", runtime.WithHTTPPathPattern("/v1/game/delete/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
