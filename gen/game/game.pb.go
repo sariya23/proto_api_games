@@ -23,6 +23,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type GameStatusType int32
+
+const (
+	GameStatusType_DRAFT   GameStatusType = 0 // Игра в драфте
+	GameStatusType_PENDING GameStatusType = 1 // Игра валидируется
+	GameStatusType_PUBLISH GameStatusType = 2 // Игра опубликована
+)
+
+// Enum value maps for GameStatusType.
+var (
+	GameStatusType_name = map[int32]string{
+		0: "DRAFT",
+		1: "PENDING",
+		2: "PUBLISH",
+	}
+	GameStatusType_value = map[string]int32{
+		"DRAFT":   0,
+		"PENDING": 1,
+		"PUBLISH": 2,
+	}
+)
+
+func (x GameStatusType) Enum() *GameStatusType {
+	p := new(GameStatusType)
+	*p = x
+	return p
+}
+
+func (x GameStatusType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (GameStatusType) Descriptor() protoreflect.EnumDescriptor {
+	return file_game_game_proto_enumTypes[0].Descriptor()
+}
+
+func (GameStatusType) Type() protoreflect.EnumType {
+	return &file_game_game_proto_enumTypes[0]
+}
+
+func (x GameStatusType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use GameStatusType.Descriptor instead.
+func (GameStatusType) EnumDescriptor() ([]byte, []int) {
+	return file_game_game_proto_rawDescGZIP(), []int{0}
+}
+
 type GameRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
@@ -575,6 +624,94 @@ func (x *DeleteGameResponse) GetGameId() uint64 {
 	return 0
 }
 
+type UpdateGameStatusRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GameId        uint64                 `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	NewStautus    GameStatusType         `protobuf:"varint,2,opt,name=new_stautus,json=newStautus,proto3,enum=game.GameStatusType" json:"new_stautus,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateGameStatusRequest) Reset() {
+	*x = UpdateGameStatusRequest{}
+	mi := &file_game_game_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateGameStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateGameStatusRequest) ProtoMessage() {}
+
+func (x *UpdateGameStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateGameStatusRequest.ProtoReflect.Descriptor instead.
+func (*UpdateGameStatusRequest) Descriptor() ([]byte, []int) {
+	return file_game_game_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateGameStatusRequest) GetGameId() uint64 {
+	if x != nil {
+		return x.GameId
+	}
+	return 0
+}
+
+func (x *UpdateGameStatusRequest) GetNewStautus() GameStatusType {
+	if x != nil {
+		return x.NewStautus
+	}
+	return GameStatusType_DRAFT
+}
+
+type UpdateGameStatusReponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateGameStatusReponse) Reset() {
+	*x = UpdateGameStatusReponse{}
+	mi := &file_game_game_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateGameStatusReponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateGameStatusReponse) ProtoMessage() {}
+
+func (x *UpdateGameStatusReponse) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateGameStatusReponse.ProtoReflect.Descriptor instead.
+func (*UpdateGameStatusReponse) Descriptor() ([]byte, []int) {
+	return file_game_game_proto_rawDescGZIP(), []int{11}
+}
+
 type GetTopGamesResponse_ShortGame struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ID            uint64                 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
@@ -588,7 +725,7 @@ type GetTopGamesResponse_ShortGame struct {
 
 func (x *GetTopGamesResponse_ShortGame) Reset() {
 	*x = GetTopGamesResponse_ShortGame{}
-	mi := &file_game_game_proto_msgTypes[10]
+	mi := &file_game_game_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -600,7 +737,7 @@ func (x *GetTopGamesResponse_ShortGame) String() string {
 func (*GetTopGamesResponse_ShortGame) ProtoMessage() {}
 
 func (x *GetTopGamesResponse_ShortGame) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[10]
+	mi := &file_game_game_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -697,13 +834,23 @@ const file_game_game_proto_rawDesc = "" +
 	"\x11DeleteGameRequest\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x04R\x06gameId\"-\n" +
 	"\x12DeleteGameResponse\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x04R\x06gameId2\xf4\x02\n" +
+	"\agame_id\x18\x01 \x01(\x04R\x06gameId\"i\n" +
+	"\x17UpdateGameStatusRequest\x12\x17\n" +
+	"\agame_id\x18\x01 \x01(\x04R\x06gameId\x125\n" +
+	"\vnew_stautus\x18\x02 \x01(\x0e2\x14.game.GameStatusTypeR\n" +
+	"newStautus\"\x19\n" +
+	"\x17UpdateGameStatusReponse*5\n" +
+	"\x0eGameStatusType\x12\t\n" +
+	"\x05DRAFT\x10\x00\x12\v\n" +
+	"\aPENDING\x10\x01\x12\v\n" +
+	"\aPUBLISH\x10\x022\xee\x03\n" +
 	"\vGameService\x12O\n" +
 	"\aAddGame\x12\x14.game.AddGameRequest\x1a\x15.game.AddGameResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/game/add\x12V\n" +
 	"\aGetGame\x12\x14.game.GetGameRequest\x1a\x15.game.GetGameResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/game/get/{game_id}\x12X\n" +
 	"\vGetTopGames\x12\x18.game.GetTopGamesRequest\x1a\x19.game.GetTopGamesResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/game/top\x12b\n" +
 	"\n" +
-	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"!\x82\xd3\xe4\x93\x02\x1b*\x19/v1/game/delete/{game_id}B5Z3github.com/sariya23/proto_api_games/gen/game;gamev4b\x06proto3"
+	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"!\x82\xd3\xe4\x93\x02\x1b*\x19/v1/game/delete/{game_id}\x12x\n" +
+	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1d.game.UpdateGameStatusReponse\"&\x82\xd3\xe4\x93\x02 :\x01*2\x1b/v1/game/update_game_statusB5Z3github.com/sariya23/proto_api_games/gen/game;gamev4b\x06proto3"
 
 var (
 	file_game_game_proto_rawDescOnce sync.Once
@@ -717,41 +864,48 @@ func file_game_game_proto_rawDescGZIP() []byte {
 	return file_game_game_proto_rawDescData
 }
 
-var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_game_game_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_game_game_proto_goTypes = []any{
-	(*GameRequest)(nil),                   // 0: game.GameRequest
-	(*DomainGame)(nil),                    // 1: game.DomainGame
-	(*AddGameRequest)(nil),                // 2: game.AddGameRequest
-	(*AddGameResponse)(nil),               // 3: game.AddGameResponse
-	(*GetGameRequest)(nil),                // 4: game.GetGameRequest
-	(*GetGameResponse)(nil),               // 5: game.GetGameResponse
-	(*GetTopGamesRequest)(nil),            // 6: game.GetTopGamesRequest
-	(*GetTopGamesResponse)(nil),           // 7: game.GetTopGamesResponse
-	(*DeleteGameRequest)(nil),             // 8: game.DeleteGameRequest
-	(*DeleteGameResponse)(nil),            // 9: game.DeleteGameResponse
-	(*GetTopGamesResponse_ShortGame)(nil), // 10: game.GetTopGamesResponse.ShortGame
-	(*date.Date)(nil),                     // 11: google.type.Date
+	(GameStatusType)(0),                   // 0: game.GameStatusType
+	(*GameRequest)(nil),                   // 1: game.GameRequest
+	(*DomainGame)(nil),                    // 2: game.DomainGame
+	(*AddGameRequest)(nil),                // 3: game.AddGameRequest
+	(*AddGameResponse)(nil),               // 4: game.AddGameResponse
+	(*GetGameRequest)(nil),                // 5: game.GetGameRequest
+	(*GetGameResponse)(nil),               // 6: game.GetGameResponse
+	(*GetTopGamesRequest)(nil),            // 7: game.GetTopGamesRequest
+	(*GetTopGamesResponse)(nil),           // 8: game.GetTopGamesResponse
+	(*DeleteGameRequest)(nil),             // 9: game.DeleteGameRequest
+	(*DeleteGameResponse)(nil),            // 10: game.DeleteGameResponse
+	(*UpdateGameStatusRequest)(nil),       // 11: game.UpdateGameStatusRequest
+	(*UpdateGameStatusReponse)(nil),       // 12: game.UpdateGameStatusReponse
+	(*GetTopGamesResponse_ShortGame)(nil), // 13: game.GetTopGamesResponse.ShortGame
+	(*date.Date)(nil),                     // 14: google.type.Date
 }
 var file_game_game_proto_depIdxs = []int32{
-	11, // 0: game.GameRequest.release_date:type_name -> google.type.Date
-	11, // 1: game.DomainGame.release_date:type_name -> google.type.Date
-	0,  // 2: game.AddGameRequest.game:type_name -> game.GameRequest
-	1,  // 3: game.GetGameResponse.game:type_name -> game.DomainGame
-	10, // 4: game.GetTopGamesResponse.games:type_name -> game.GetTopGamesResponse.ShortGame
-	11, // 5: game.GetTopGamesResponse.ShortGame.release_date:type_name -> google.type.Date
-	2,  // 6: game.GameService.AddGame:input_type -> game.AddGameRequest
-	4,  // 7: game.GameService.GetGame:input_type -> game.GetGameRequest
-	6,  // 8: game.GameService.GetTopGames:input_type -> game.GetTopGamesRequest
-	8,  // 9: game.GameService.DeleteGame:input_type -> game.DeleteGameRequest
-	3,  // 10: game.GameService.AddGame:output_type -> game.AddGameResponse
-	5,  // 11: game.GameService.GetGame:output_type -> game.GetGameResponse
-	7,  // 12: game.GameService.GetTopGames:output_type -> game.GetTopGamesResponse
-	9,  // 13: game.GameService.DeleteGame:output_type -> game.DeleteGameResponse
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	14, // 0: game.GameRequest.release_date:type_name -> google.type.Date
+	14, // 1: game.DomainGame.release_date:type_name -> google.type.Date
+	1,  // 2: game.AddGameRequest.game:type_name -> game.GameRequest
+	2,  // 3: game.GetGameResponse.game:type_name -> game.DomainGame
+	13, // 4: game.GetTopGamesResponse.games:type_name -> game.GetTopGamesResponse.ShortGame
+	0,  // 5: game.UpdateGameStatusRequest.new_stautus:type_name -> game.GameStatusType
+	14, // 6: game.GetTopGamesResponse.ShortGame.release_date:type_name -> google.type.Date
+	3,  // 7: game.GameService.AddGame:input_type -> game.AddGameRequest
+	5,  // 8: game.GameService.GetGame:input_type -> game.GetGameRequest
+	7,  // 9: game.GameService.GetTopGames:input_type -> game.GetTopGamesRequest
+	9,  // 10: game.GameService.DeleteGame:input_type -> game.DeleteGameRequest
+	11, // 11: game.GameService.UpdateGameStatus:input_type -> game.UpdateGameStatusRequest
+	4,  // 12: game.GameService.AddGame:output_type -> game.AddGameResponse
+	6,  // 13: game.GameService.GetGame:output_type -> game.GetGameResponse
+	8,  // 14: game.GameService.GetTopGames:output_type -> game.GetTopGamesResponse
+	10, // 15: game.GameService.DeleteGame:output_type -> game.DeleteGameResponse
+	12, // 16: game.GameService.UpdateGameStatus:output_type -> game.UpdateGameStatusReponse
+	12, // [12:17] is the sub-list for method output_type
+	7,  // [7:12] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_game_game_proto_init() }
@@ -764,13 +918,14 @@ func file_game_game_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_game_game_proto_rawDesc), len(file_game_game_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   11,
+			NumEnums:      1,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_game_game_proto_goTypes,
 		DependencyIndexes: file_game_game_proto_depIdxs,
+		EnumInfos:         file_game_game_proto_enumTypes,
 		MessageInfos:      file_game_game_proto_msgTypes,
 	}.Build()
 	File_game_game_proto = out.File

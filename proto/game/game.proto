@@ -7,28 +7,39 @@ option go_package = "github.com/sariya23/proto_api_games/gen/game;gamev4";
 import "google/api/annotations.proto";
 import "google/api/date.proto";
 
+
 service GameService {
+    // Создать новую игру
     rpc AddGame(AddGameRequest) returns (AddGameResponse) {
         option (google.api.http) = {
             post: "/v1/game/add"
             body: "*"
         };
     };
+    // Получить игру с подробной информацией 
     rpc GetGame(GetGameRequest) returns (GetGameResponse) {
         option (google.api.http) = {
             get: "/v1/game/get/{game_id}"
         };
     };
+    // Получить список игр с укороченной информацией
     rpc GetTopGames(GetTopGamesRequest) returns (GetTopGamesResponse) {
         option (google.api.http) = {
             get: "/v1/game/top"
         };
     };
+    // 
     rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
         option (google.api.http) = {
             delete: "/v1/game/delete/{game_id}"
         };
-    }
+    };
+    rpc UpdateGameStatus(UpdateGameStatusRequest) returns (UpdateGameStatusReponse) {
+        option (google.api.http) = {
+            patch: "/v1/game/update_game_status"
+            body: "*"
+        };
+    };
 }
 
 message GameRequest {
@@ -93,3 +104,16 @@ message DeleteGameRequest {
 message DeleteGameResponse {
     uint64 game_id = 1;
 }
+
+enum GameStatusType {
+    DRAFT = 0; // Игра в драфте
+    PENDING = 1; // Игра валидируется
+    PUBLISH = 2; // Игра опубликована
+}
+message UpdateGameStatusRequest {
+    uint64 game_id = 1;
+    GameStatusType new_stautus = 2;
+}
+
+message UpdateGameStatusReponse {}
+
