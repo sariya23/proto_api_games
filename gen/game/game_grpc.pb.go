@@ -36,7 +36,9 @@ type GameServiceClient interface {
 	GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error)
 	// Получить список игр с укороченной информацией
 	GetTopGames(ctx context.Context, in *GetTopGamesRequest, opts ...grpc.CallOption) (*GetTopGamesResponse, error)
+	// DeleteGame удалить игру
 	DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error)
+	// UpdateGameStatus обновить статус игры
 	UpdateGameStatus(ctx context.Context, in *UpdateGameStatusRequest, opts ...grpc.CallOption) (*UpdateGameStatusReponse, error)
 }
 
@@ -108,7 +110,9 @@ type GameServiceServer interface {
 	GetGame(context.Context, *GetGameRequest) (*GetGameResponse, error)
 	// Получить список игр с укороченной информацией
 	GetTopGames(context.Context, *GetTopGamesRequest) (*GetTopGamesResponse, error)
+	// DeleteGame удалить игру
 	DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error)
+	// UpdateGameStatus обновить статус игры
 	UpdateGameStatus(context.Context, *UpdateGameStatusRequest) (*UpdateGameStatusReponse, error)
 	mustEmbedUnimplementedGameServiceServer()
 }

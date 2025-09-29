@@ -19,21 +19,24 @@ service GameService {
     // Получить игру с подробной информацией 
     rpc GetGame(GetGameRequest) returns (GetGameResponse) {
         option (google.api.http) = {
-            get: "/v1/game/get/{game_id}"
+            get: "/v1/games/{game_id}"
         };
     };
     // Получить список игр с укороченной информацией
     rpc GetTopGames(GetTopGamesRequest) returns (GetTopGamesResponse) {
         option (google.api.http) = {
-            get: "/v1/game/top"
+            post: "/v1/games/top"
+            body: "*"
         };
     };
-    // 
+    // DeleteGame удалить игру
     rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
         option (google.api.http) = {
             delete: "/v1/game/delete/{game_id}"
         };
     };
+
+    // UpdateGameStatus обновить статус игры
     rpc UpdateGameStatus(UpdateGameStatusRequest) returns (UpdateGameStatusReponse) {
         option (google.api.http) = {
             patch: "/v1/game/update_game_status"

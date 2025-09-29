@@ -843,11 +843,11 @@ const file_game_game_proto_rawDesc = "" +
 	"\x0eGameStatusType\x12\t\n" +
 	"\x05DRAFT\x10\x00\x12\v\n" +
 	"\aPENDING\x10\x01\x12\v\n" +
-	"\aPUBLISH\x10\x022\xee\x03\n" +
+	"\aPUBLISH\x10\x022\xef\x03\n" +
 	"\vGameService\x12O\n" +
-	"\aAddGame\x12\x14.game.AddGameRequest\x1a\x15.game.AddGameResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/game/add\x12V\n" +
-	"\aGetGame\x12\x14.game.GetGameRequest\x1a\x15.game.GetGameResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/game/get/{game_id}\x12X\n" +
-	"\vGetTopGames\x12\x18.game.GetTopGamesRequest\x1a\x19.game.GetTopGamesResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/game/top\x12b\n" +
+	"\aAddGame\x12\x14.game.AddGameRequest\x1a\x15.game.AddGameResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/game/add\x12S\n" +
+	"\aGetGame\x12\x14.game.GetGameRequest\x1a\x15.game.GetGameResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/games/{game_id}\x12\\\n" +
+	"\vGetTopGames\x12\x18.game.GetTopGamesRequest\x1a\x19.game.GetTopGamesResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/games/top\x12b\n" +
 	"\n" +
 	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"!\x82\xd3\xe4\x93\x02\x1b*\x19/v1/game/delete/{game_id}\x12x\n" +
 	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1d.game.UpdateGameStatusReponse\"&\x82\xd3\xe4\x93\x02 :\x01*2\x1b/v1/game/update_game_statusB5Z3github.com/sariya23/proto_api_games/gen/game;gamev4b\x06proto3"
